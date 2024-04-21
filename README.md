@@ -1,18 +1,35 @@
-## Getting Started
+# Java Banking System
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+This Java project implements a comprehensive banking system using object-oriented programming principles and design patterns. It utilizes the JDBC library to interact with a database, ensuring data integrity with ACID properties and encapsulation.
 
-## Folder Structure
+## Key Features
 
-The workspace contains two folders by default, where:
+- **Bank Class:** Represents a bank entity with features to manage clients, accounts, and transactions.
+- **Client Class:** Represents a bank client with attributes such as name, age, email, etc.
+- **Transaction Handling:** Supports various banking operations like transferring money between accounts.
+- **Database Interaction:** Utilizes JDBC to interact with a database, ensuring data integrity and security.
+- **Encapsulation:** Ensures that data is encapsulated within classes, providing a clean and secure interface for interacting with the banking system.
+- **Abstract Classes and Design Patterns:** Utilizes abstract classes and design patterns such as Singleton to ensure maintainability and scalability of the codebase.
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+## Usage
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+To use this banking system, follow these steps:
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+1. Ensure you have Java installed on your system.
+2. Set up a MySQL database and configure the JDBC connection details in the `Model` class.
+3. Compile all the Java files in the project.
+4. Run the `App` class to start the banking system.
 
-## Dependency Management
+## Database Setup
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+1. Create a MySQL database.
+2. Create tables using the SQL scripts provided in the `sql` folder.
+3. Update the database connection details in the `Model` class.
+
+## Contributors
+
+- [Robert Connolly and Rafael Augusto]
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
