@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS cuentas (telefono VARCHAR(15) PRIMARY KEY, saldo DECIMAL(10, 2));
