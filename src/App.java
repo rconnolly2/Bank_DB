@@ -11,8 +11,8 @@ public class App {
         Model obj_modelo = Model.CrearInstancia(USUARIO_DB, CONTRASENA_DB, NOMBRE_DB);
         Model obj_modelo2 = Model.CrearInstancia(USUARIO_DB, CONTRASENA_DB, "bank_db2");
 
-        System.out.println(obj_modelo2.getNOMBRE_DB()); // Devuelve el mismo objeto ;)
-        System.out.println(obj_modelo.getNOMBRE_DB()); // Devuelve el mismo objeto ;)
+        System.out.println(obj_modelo2.getNOMBRE_DB());
+        System.out.println(obj_modelo.getNOMBRE_DB());
 
         Bank b1 = new Bank(obj_modelo, "BBVA");
         Bank b2 = new Bank(obj_modelo2, "Santander");
@@ -29,22 +29,6 @@ public class App {
         b2.InsertarClientes();
 
         b1.EnviarBizum(734732732, 7653462, b2, 10.12);
-
-        // System.out.println(obj_modelo.ExisteColumnaEnTabla("usuarios", "nombre"));
-
-        // ArrayList<String> lst = obj_modelo.GetParametroBDD("nombre", "usuarios");
-
-        // for (String n : lst) {
-        //     System.out.println(n);
-        // }
-
-        // // FileReader fr = new FileReader(obj_modelo, "C:\\Users\\Robert\\Desktop\\Java\\Bank_DB\\sql\\clientes.sql", "bank_db");
-        // Bank b1 = new Bank(obj_modelo, "BBVA");
-        // Adult a1 = new Adult("Esteban", "Rodriguez", 23, "esteban@gmail.com", true, 734732732, "M", 23.65);
-        // a1.QueSoy();
-        // System.out.println(a1.toString());
-        // b1.AñadirCliente(a1);
-        // b1.InsertarClientes();
 
 
     }
