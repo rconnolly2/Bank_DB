@@ -16,19 +16,19 @@ This Java project implements a comprehensive banking system using object-oriente
 To use this banking system, follow these steps:
 
 1. Ensure you have Java installed on your system.
-2. Set up a MySQL database and configure the JDBC connection details in the `Model` class.
+2. Set up a MySQL database and configure the JDBC connection details in the `App` class.
 3. Compile all the Java files in the project.
 4. Run the `App` class to start the banking system.
 
-## Database Setup
+## Program does the Database setup
 
-1. Create a MySQL database.
-2. Create tables using the SQL scripts provided in the `sql` folder.
-3. Update the database connection details in the `Model` class.
+1. Program creates a MySQL database.
+2. Creates tables using the SQL scripts in the `sql` folder.
+3. Inserts Data
 
 ## Contributors
 
-- [Robert Connolly and Rafael Augusto]
+- Robert Connolly and Rafael Augusto
 
 ## License
 
