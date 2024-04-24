@@ -30,7 +30,6 @@ public class App {
 
         b1.EnviarBizum(734732732, 7653462, b2, 10.12);
 
-
     }
 
 
