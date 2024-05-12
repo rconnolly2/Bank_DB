@@ -28,7 +28,7 @@ public class App {
         b1.InsertarClientes();
         b2.InsertarClientes();
 
-        b1.EnviarBizum(734732732, 7653462, b2, 10.12);
+        b1.EnviarBizum(734732732, 7653462, b2, 60.12);
 
     }
 

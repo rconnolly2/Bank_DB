@@ -187,5 +187,40 @@ public class Model implements AutoCloseable  {
             return lst_resultado;
         }
 
+        public ArrayList<String> GetParametroBDD(String campo, String tabla, String where) {
+            /*
+             * Sobre carga de función que acepta como argumento una condición where en la sentencia SQL
+             */
+            ArrayList<String> lst_resultado = new ArrayList<String>();
+
+            try {
+                if (!ExisteColumnaEnTabla(tabla, campo)) {
+                    System.err.println("La tabla 'usuarios' no existe en la base de datos");
+                    return lst_resultado;
+                }
+    
+                // Ejecuto use bdd
+                PreparedStatement stat_preparado_use = conexion.prepareStatement("USE "+this.NOMBRE_DB);
+                stat_preparado_use.executeUpdate();
+                stat_preparado_use.close();
+
+                // Ejecuto consulta SELECT
+                PreparedStatement stat_preparado_select = conexion.prepareStatement("SELECT " + campo + " FROM " + tabla + " WHERE " + where);
+                ResultSet resultado_set = stat_preparado_select.executeQuery();
+
+                while (resultado_set.next()) { // itero sobre el resultado
+                    lst_resultado.add(resultado_set.getString(campo)); // añado a arraylist
+                }
+
+                resultado_set.close();
+                stat_preparado_select.close();
+            } catch (SQLException e) {
+                System.err.println("Error al obtener los datos del campo de la tabla: " + e.getMessage());
+                e.printStackTrace();
+            }
+
+            return lst_resultado;
+        }
+
         
 }

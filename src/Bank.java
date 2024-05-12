@@ -1,5 +1,5 @@
-import java.sql.Connection;
 import java.util.ArrayList;
+import java.rmi.UnexpectedException;
 import java.sql.*;
 
 
@@ -17,10 +17,10 @@ public class Bank {
         }
         this.nombre_banco = nom_banco;
         // CREO TABLAS SI NO EXISTEN
-        System.out.println(db_model.ExisteTabla("clientes")+"Llega aqui");
         if (!db_model.ExisteTabla("clientes")) {
             CrearTabla("C:\\Users\\Robert\\Desktop\\Java\\Bank_DB\\sql\\clientes.sql");
         } else if (!db_model.ExisteTabla("cuentas")) {
+            System.out.println("creo cuentas");
             CrearTabla("C:\\Users\\Robert\\Desktop\\Java\\Bank_DB\\sql\\cuentas.sql");
         }
         ActualizarListaClientes();
@@ -28,8 +28,9 @@ public class Bank {
 
     // READ
     private void ActualizarListaClientes() {
-        this.db_model.GetParametroBDD("nombre", "usuarios");
+        setLst_clientes_db(this.db_model.GetParametroBDD("nombre", "clientes"));
         System.out.println("Lista clientes actualizado: READ COMPLETE");
+        System.err.println(getLst_clientes_db()); // Print de los clientes en la base de datos
     }
 
     // CREATE
@@ -115,7 +116,7 @@ public class Bank {
             }
         }
 
-        if (!existe_cliente) {
+        if (!existe_cliente) { // Si no existe en la lista de clientes del banco lo añado
             clientes_nuevos.add(cliente_nuevo);
         }
     }
@@ -123,6 +124,12 @@ public class Bank {
     public void EnviarBizum(Integer num_emisor, Integer num_receptor, Bank banco_receptor, Double cant_dinero) {
         Connection conexion1 = db_model.conexion;
         Connection conexion2 = banco_receptor.db_model.conexion;
+        Double saldo1 = this.getSaldoCliente(num_emisor);
+
+        if (saldo1 < cant_dinero) { // Si el emisor no tiene suficiente dinero lanzo error
+            throw new IllegalArgumentException("¡Emisor no tiene suficiente dinero!");
+        }
+
         try {
             // Quito auto_commit
             conexion1.setAutoCommit(false);
@@ -191,6 +198,20 @@ public class Bank {
                 ex.printStackTrace();
             }
         }
+    }
+
+    public Double getSaldoCliente(Integer numero) {
+        Double saldo;
+        ArrayList<String> rslt_query = new ArrayList<String>();
+        rslt_query = db_model.GetParametroBDD("saldo", "cuentas", "telefono="+numero);
+
+        if (rslt_query.size()<1) {
+            throw new IndexOutOfBoundsException("Este numero no existe");
+        } else {
+            saldo = Double.parseDouble(rslt_query.get(0));
+        }
+
+        return saldo;
     }
 
     public Model getDb_model() {
